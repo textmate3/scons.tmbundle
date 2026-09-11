@@ -22,7 +22,7 @@ if [ "x$lastBuildDir" != "x" ]; then
 fi
 
 # Allow spaces to delimit arguments in ${target} -- bad idea?
-python -u "${TM_BUNDLE_SUPPORT}/bin/scons_html_wrapper.py" ${lastTarget}</string>
+"${TM_PYTHON:-python3}" -u "${TM_BUNDLE_SUPPORT}/bin/scons_html_wrapper.py" ${lastTarget}</string>
 	<key>fallbackInput</key>
 	<string>word</string>
 	<key>input</key>

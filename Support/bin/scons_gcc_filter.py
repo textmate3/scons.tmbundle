@@ -1,11 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Filter for scons output, adds TextMate hyperlinks for gcc error msgs."""
 
 import re
 import sys
 import os
 import fnmatch
-import cgi
+from html import escape
 
 class SConsGCCFilter(object):
     stlIgnore = ["iosfwd", "streambuf", "streambuf_iterator.h", "basic_ios.h",
@@ -44,7 +44,7 @@ class SConsGCCFilter(object):
     def _addIgnorePath(self, pattern):
         """Ignore (or rather, don't highlight) warnings from files 
         whose names match the glob pattern."""
-        print "<i>Will not highlight warnings in %r</i><br/>" % cgi.escape(pattern)
+        print("<i>Will not highlight warnings in %r</i><br/>" % escape(pattern))
         self._ignorePatterns.append(pattern)
              
     def _isIgnoredPath(self, pathname):
@@ -139,7 +139,7 @@ class SConsGCCFilter(object):
 def main():
     f = SConsGCCFilter()
     f.feed(sys.stdin.read())
-    print f.filter(consumeAll=True)
+    print(f.filter(consumeAll=True))
 
 if __name__ == "__main__":
     main()

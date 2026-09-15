@@ -1,11 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Runs scons and wraps its output as HTML."""
 
 import sys
 import os
 import select
 from scons_gcc_filter import SConsGCCFilter
-import cgi
+from html import escape
 import subprocess
 
 def findSConstructDir():
@@ -62,8 +62,8 @@ def runSCons(args):
     """Run SCons in a not-very-flexible way."""
     args = ["scons"] + args
 
-    print("<i># Working dir: %s</i><br/>" % cgi.escape(os.getcwd()))
-    print("<b>%s</b><br/>" % cgi.escape(" ".join([str(a) for a in args])))
+    print("<i># Working dir: %s</i><br/>" % escape(os.getcwd()))
+    print("<b>%s</b><br/>" % escape(" ".join([str(a) for a in args])))
     filterOutput(args)
     
 def main():
